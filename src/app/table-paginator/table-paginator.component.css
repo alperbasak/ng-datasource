@@ -1,0 +1,32 @@
+/*Todo flex sizes and alignments*/
+table {
+  min-width: 1000px;
+  width: 100%;
+}
+
+.mat-column-date {
+  flex: none;
+  width: 20%;
+}
+
+.mat-column-name {
+  flex: none;
+  width: 20%;
+}
+
+.mat-column-age {
+  flex: none;
+  width: 20%;
+}
+
+.mat-column-gender {
+  flex: none;
+  width: 20%;
+}
+
+.mat-column-city {
+  flex: none;
+  width: 20%;
+}
+
+
