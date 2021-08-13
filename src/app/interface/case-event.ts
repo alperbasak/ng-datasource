@@ -1,4 +1,4 @@
-export interface CaseData {
+export interface CaseEvent {
   date: string;
   name: string;
   age: number;

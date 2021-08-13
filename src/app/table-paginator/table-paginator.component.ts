@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
-import {CaseData} from '../interface/case-data';
+import {CaseEvent} from '../interface/case-event';
 
 @Component({
   selector: 'app-table-paginator',
@@ -10,7 +10,7 @@ import {CaseData} from '../interface/case-data';
 })
 export class TablePaginatorComponent implements AfterViewInit {
   displayedColumns: string[] = ['date', 'name', 'age', 'gender', 'city'];
-  dataSource = new MatTableDataSource<CaseData>();
+  dataSource = new MatTableDataSource<CaseEvent>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 

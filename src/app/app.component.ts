@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {TablePaginatorComponent} from './table-paginator/table-paginator.component';
 import {CasesService} from './service/cases.service';
-import {CaseData} from './interface/case-data';
+import {CaseEvent} from './interface/case-event';
 
 declare var faker: any;
 
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
       const fakeGender = faker.name.gender(2);
       const fakeCity = faker.address.city();
 
-      const fakeData: CaseData = {
+      const fakeData: CaseEvent = {
         date: fakeDate,
         name: fakeName,
         age: fakeAge,

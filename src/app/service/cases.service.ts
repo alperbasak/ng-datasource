@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {CaseData} from '../interface/case-data';
+import {CaseEvent} from '../interface/case-event';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import {catchError} from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ const httpOptions = {
 
 @Injectable()
 export class CasesService {
-  casesUrl = 'api/cases';  // URL to web api
+  casesUrl = 'http://localhost:9000/case/';  // URL to web api
   private handleError: HandleError;
 
   constructor(
@@ -24,32 +24,32 @@ export class CasesService {
   }
 
   /** GET cases from the server */
-  getCases(): Observable<CaseData[]> {
-    return this.http.get<CaseData[]>(this.casesUrl)
+  getCases(): Observable<CaseEvent[]> {
+    return this.http.get<CaseEvent[]>(this.casesUrl)
       .pipe(
         catchError(this.handleError('getCases', []))
       );
   }
 
   /* GET cases whose name contains search term */
-  searchCases(term: string): Observable<CaseData[]> {
+  searchCases(term: string): Observable<CaseEvent[]> {
     term = term.trim();
 
     // Add safe, URL encoded search parameter if there is a search term
     const options = term ?
       { params: new HttpParams().set('name', term) } : {};
 
-    return this.http.get<CaseData[]>(this.casesUrl, options)
+    return this.http.get<CaseEvent[]>(this.casesUrl, options)
       .pipe(
-        catchError(this.handleError<CaseData[]>('searchCases', []))
+        catchError(this.handleError<CaseEvent[]>('searchCases', []))
       );
   }
 
   //////// Save methods //////////
 
   /** POST: add a new case to the database */
-  addCase(caseData: CaseData): Observable<CaseData> {
-    return this.http.post<CaseData>(this.casesUrl, caseData, httpOptions)
+  addCase(caseData: CaseEvent): Observable<CaseEvent> {
+    return this.http.post<CaseEvent>(this.casesUrl, caseData, httpOptions)
       .pipe(
         catchError(this.handleError('addCase', caseData))
       );
@@ -65,11 +65,11 @@ export class CasesService {
   }
 
   /** PUT: update the caseData on the server. Returns the updated caseData upon success. */
-  updateCase(caseData: CaseData): Observable<CaseData> {
+  updateCase(caseData: CaseEvent): Observable<CaseEvent> {
     httpOptions.headers =
       httpOptions.headers.set('Authorization', 'my-new-auth-token');
 
-    return this.http.put<CaseData>(this.casesUrl, caseData, httpOptions)
+    return this.http.put<CaseEvent>(this.casesUrl, caseData, httpOptions)
       .pipe(
         catchError(this.handleError('updateCase', caseData))
       );
